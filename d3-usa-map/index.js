@@ -1,5 +1,6 @@
 const svgHeight = 1000;
 const svgWidth = 800;
+let toggle = false;
 
 // projection
 const projection = d3.geo.albersUsa();
@@ -24,10 +25,17 @@ d3.json('statesmap.json', function(json) {
 		.enter()
 		.append('path')
 		.attr('d', path)
-		.style('fill', '#69b3a2')
+		.style('fill', '#D3D3D3')
+		.style('stroke', '#000000')
 		.on('click', changeStateColor);
 });
 
 function changeStateColor() {
-	d3.select(this).style('fill', '#800080');
+	if (!toggle) {
+		d3.select(this).style('fill', '#2196f3');
+		toggle = true;
+	} else {
+		d3.select(this).style('fill', '#ff5252');
+		toggle = false;
+	}
 }
