@@ -15,7 +15,7 @@ const svg = d3
 	.attr('height', svgWidth);
 
 // load json map data
-d3.json('map.json', function(json) {
+d3.json('statesmap.json', function(json) {
 	svg
 		.append('g')
 		.attr('class', 'usa')
@@ -23,5 +23,11 @@ d3.json('map.json', function(json) {
 		.data(json.features)
 		.enter()
 		.append('path')
-		.attr('d', path);
+		.attr('d', path)
+		.style('fill', '#69b3a2')
+		.on('click', changeStateColor);
 });
+
+function changeStateColor() {
+	d3.select(this).style('fill', '#800080');
+}
